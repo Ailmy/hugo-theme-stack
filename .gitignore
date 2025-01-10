@@ -2,3 +2,10 @@ public
 resources
 assets/jsconfig.json
 .hugo_build.lock
+
+# IDE
+.idea/
+.vscode/
+.settings/
+*.subliime-workspace
+*.sublime-project
