@@ -38,7 +38,7 @@ class StackGallery {
 
         for (const el of figures) {
             const figcaption = el.querySelector('figcaption'),
-                img = el.querySelector('img');
+                img = el.querySelector('assets');
 
             let aux: PhotoSwipeItem = {
                 w: parseInt(img.getAttribute('width')),
@@ -59,9 +59,9 @@ class StackGallery {
     public static createGallery(container: HTMLElement) {
         /// The process of wrapping image with figure tag is done using JavaScript instead of only Hugo markdown render hook
         /// because it can not detect whether image is being wrapped by a link or not
-        /// and it lead to a invalid HTML construction (<a><figure><img></figure></a>)
+        /// and it lead to a invalid HTML construction (<a><figure><assets></figure></a>)
 
-        const images = container.querySelectorAll('img.gallery-image');
+        const images = container.querySelectorAll('assets.gallery-image');
         for (const img of Array.from(images)) {
             /// Images are wrapped with figure tag if the paragraph has only images without texts
             /// This is done to allow inline images within paragraphs
@@ -81,7 +81,7 @@ class StackGallery {
             const hasLink = img.parentElement.tagName == 'A';
 
             let el: HTMLElement = img;
-            /// Wrap image with figure tag, with flex-grow and flex-basis values extracted from img's data attributes
+            /// Wrap image with figure tag, with flex-grow and flex-basis values extracted from assets's data attributes
             const figure = document.createElement('figure');
             figure.style.setProperty('flex-grow', img.getAttribute('data-flex-grow') || '1');
             figure.style.setProperty('flex-basis', img.getAttribute('data-flex-basis') || '0');
@@ -99,7 +99,7 @@ class StackGallery {
                 figure.appendChild(figcaption);
             }
 
-            /// Wrap img tag with <a> tag if image was not wrapped by <a> tag
+            /// Wrap assets tag with <a> tag if image was not wrapped by <a> tag
             if (!hasLink) {
                 figure.className = 'gallery-image';
 
@@ -138,7 +138,7 @@ class StackGallery {
 
     /**
      * Wrap adjacent figure tags with div.gallery
-     * @param figures 
+     * @param figures
      */
     public static wrap(figures: HTMLElement[]) {
         const galleryContainer = document.createElement('div');

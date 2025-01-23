@@ -39,7 +39,7 @@ let Stack = {
 
                     const articles = entry.target.querySelectorAll('article.has-image');
                     articles.forEach(async articles => {
-                        const image = articles.querySelector('img'),
+                        const image = articles.querySelector('assets'),
                             imageURL = image.src,
                             key = image.getAttribute('data-key'),
                             hash = image.getAttribute('data-hash'),
